@@ -1,0 +1,19 @@
+Copyright (c) 2025-2026 Nicholas Moger. All rights reserved.
+
+Rune DSL Studio is proprietary and confidential software. Unauthorized copying,
+distribution, modification, reverse engineering, decompilation, or use of this
+software or its associated data, in whole or in part, via any medium, is strictly
+prohibited without the express written permission of the author.
+
+This product bundles third-party components (including FINOS Rune DSL and the
+FINOS Common Domain Model) that are licensed separately under their own terms.
+Those licenses and attributions are set out in THIRD-PARTY-NOTICES.md and are
+unaffected by this license; nothing here restricts your rights under those terms
+with respect to those third-party components.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
