@@ -2,6 +2,11 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.3.1] - 2026-06-27
+
+### Fixed
+- **End User License Agreement now displays** — the EULA is bundled in the package, so **Review & Accept** opens the full agreement before acceptance (previously the document was not packaged and the review step showed nothing).
+
 ## [8.3.0] - 2026-06-27
 
 ### Changed
