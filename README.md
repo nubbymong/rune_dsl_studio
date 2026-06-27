@@ -5,7 +5,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/VS%20Code-1.125%2B-4ea3f0" alt="VS Code 1.125+">
   <img src="https://img.shields.io/badge/Open%20VSX-compatible-79DEBD" alt="Open VSX compatible">
-  <img src="https://img.shields.io/badge/license-Apache%202.0-C3E455" alt="Apache 2.0">
+  <img src="https://img.shields.io/badge/license-Proprietary-lightgrey" alt="Proprietary">
 </p>
 
 # Rune DSL Studio
@@ -72,15 +72,29 @@ RuneBooks are interactive notebooks for **prototyping and learning Rune DSL and 
 - **Validate** — run the type validator, cardinality checks, and condition rules with a detailed results view.
 - **Templates** — start from pre-built templates with guided steps in the sidebar.
 
-## Training
+## Designer
 
-![Coming 24 June 2026](https://img.shields.io/badge/Coming-24%20June%202026-d8b25a)
+![Status: Beta](https://img.shields.io/badge/Status-Beta-8957e5)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/nubbymong/rune_dsl_studio/main/marketplace/shot-training.png" alt="The DRR training course (coming 24 June 2026)" width="88%">
+  <img src="https://raw.githubusercontent.com/nubbymong/rune_dsl_studio/main/marketplace/shot-designer.png" alt="The Designer — guided CDM trade qualification" width="88%">
 </p>
 
-The first course — **CDM & DRR end to end** — **arrives in Studio on 24 June 2026**, with more to follow. A full four-module, hands-on walkthrough from first enum to regulator-ready XML:
+A guided accelerator for CDM onboarding. Choose any product and lifecycle event, make the field-level choices down the qualification tree, and Designer assembles the matching **builder / factory-pattern code** for you — dynamically, in a few clicks. This goes beyond the toolchain's ordinary Rune DSL code generation: Studio produces **real, usable builder-pattern code** — a clean skeleton to complete, or seeded with hardcoded sample data so you see a realistic product instance straight away. It then **projects that object in the Output tab and runs the validations** against it, so a conforming example comes together in front of you rather than being inferred from the model. **Add to Project** drops the result into your build — Java alone, or with run scripts — each product in its own package.
+
+The effect is to compress the analysis-and-build phase of onboarding: Designer takes on roughly **95% of the initial effort** of standing up a CDM product/event — turning what is typically months of work into days. It won't populate every optional field — the last mile stays yours.
+
+> **Beta.** Designer is being tested across multiple DSL toolchain versions for compatibility (clean export currently centres on the bundled DRR 6.3 product set). **Coming soon:** DRR — select a regulatory regime and Designer will create the `ReportableEvent` and the report runners/builders for any CDM product/event combination, and generate rich documentation to support your design.
+
+## Training
+
+![Available now](https://img.shields.io/badge/Available-now-79DEBD)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nubbymong/rune_dsl_studio/main/marketplace/shot-training.png" alt="The CDM & DRR training course" width="88%">
+</p>
+
+The first course — **CDM & DRR end to end** — **is available in Studio now**, with more to follow. A full four-module, hands-on walkthrough from first enum to regulator-ready XML:
 
 | Module | What you build |
 |---|---|
@@ -132,9 +146,9 @@ Rune DSL Studio runs entirely on your machine and collects **no background telem
 
 ## Attribution & licensing
 
-**License:** Rune DSL Studio is licensed under **Apache 2.0**.
+**License:** Rune DSL Studio is **proprietary software — all rights reserved**; see the `LICENSE` file. The bundled third-party toolchain is licensed separately under its own terms, as set out below.
 
-So that projects build without external toolchain setup, this extension bundles the **[Rune DSL](https://github.com/finos/rune-dsl) build toolchain — an open-source project hosted by [FINOS](https://www.finos.org/)** (the Fintech Open Source Foundation), maintained by Regnosys — (~120 third-party Java components). These are redistributed **unmodified** under their own licenses — principally **Apache 2.0** (Jackson, Guava, Apache Commons, SnakeYAML, …) and the **Eclipse Public License (EPL)** (Eclipse EMF, Xtext, LSP4J, JDT), with a small number of MIT, BSD, and CDDL components. Every bundled component and its license is enumerated in the `THIRD-PARTY-NOTICES` file that ships with the extension and the [source repository](https://github.com/nubbymong/rune_dsl_studio); a CycloneDX SBOM and an OSV CVE scan — with accepted-risk notes for the build-time-only advisories — are published alongside it.
+So that projects build without external toolchain setup, this extension bundles the **[Rune DSL](https://github.com/finos/rune-dsl) build toolchain — an open-source project hosted by [FINOS](https://www.finos.org/)** (the Fintech Open Source Foundation), maintained by Regnosys. The **~120 third-party dependency components** (Jackson, Guava, Apache Commons, SnakeYAML, …, and the Eclipse EMF/Xtext/LSP4J/JDT stack) are redistributed **unmodified** under their own licenses — principally **Apache 2.0** and the **Eclipse Public License (EPL)**, with a small number of MIT, BSD, and CDDL components. The **Rune DSL engine** itself is incorporated under the **Apache 2.0** license and is **recompiled/modified by the maintainer**; modified files are acknowledged in `THIRD-PARTY-NOTICES` per §4 of that license. Every bundled component and its license is enumerated in the `THIRD-PARTY-NOTICES` file that ships with the extension; a CycloneDX SBOM and an OSV CVE scan — with accepted-risk notes for the build-time-only advisories — are published in the [source repository](https://github.com/nubbymong/rune_dsl_studio).
 
 **Related projects:** [FINOS](https://www.finos.org/) · [Rune DSL](https://github.com/finos/rune-dsl) · [FINOS Common Domain Model (CDM)](https://github.com/finos/common-domain-model) · Digital Regulatory Reporting (DRR).
 

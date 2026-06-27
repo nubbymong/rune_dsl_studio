@@ -1,12 +1,14 @@
 # Third-Party Notices — Rune DSL Studio
 
-Rune DSL Studio is licensed under **Apache-2.0**. So that projects build without external toolchain setup, it bundles the open-source Rune DSL build toolchain — **125 third-party Java components**, redistributed **unmodified** under their own licenses, enumerated below.
+Rune DSL Studio is **proprietary software — all rights reserved** (see the `LICENSE` file). So that projects build without external toolchain setup, it bundles the open-source Rune DSL build toolchain — **125 third-party Java components**, enumerated below. The third-party **dependency** components are redistributed **unmodified** under their own licenses. The **Rune DSL engine** itself (FINOS, Apache-2.0) is **recompiled/modified by the maintainer**; per §4 of the Apache-2.0 license this is a modified redistribution, acknowledged here.
 
 > **Scope:** these are the build-tool JARs that physically ship inside the VSIX. The CDM, DRR, or any other model you build is **downloaded at build time and is NOT bundled** — its content and license are not covered here.
 
-> **DRAFT — licenses inferred from component coordinates** (the source SBOM carries no license fields). The dominant licenses (Apache-2.0, EPL) are reliable; any entry marked **verify** should be human-checked before public release. License texts below are fetched byte-exact from the SPDX license-list.
+> Licenses are mapped from each component's coordinates and checked against the SPDX license-list. The two previously-flagged specialised entries — `net.java.dev.msv:xsdlib` (BSD-2-Clause) and `org.jvnet.staxex:stax-ex` (EDL-1.0 / BSD-3-Clause) — are confirmed against their upstream artifacts. License texts below are byte-exact from the SPDX license-list.
 
 _Generated from `docs/security/sbom-jars.cdx.json` (CycloneDX). Versions are pinned to the Rune DSL `9.75.3` toolchain — regenerate (`gen-notices.cjs`) on any toolchain bump._
+
+> **Source availability:** every component listed is published on **Maven Central**; its source is available as the `-sources` artifact for the exact coordinates below, and from each project's upstream repository (the Eclipse Foundation for EMF / Xtext / LSP4J / JDT and the EPL components; QOS.ch for logback; Eclipse EE4J for the JAXB / StAX / CDDL components). This satisfies the source-availability terms of the EPL and CDDL licenses for the object-code form bundled here.
 
 ## Summary
 
@@ -87,7 +89,7 @@ Apache License, Version 2.0 — https://www.apache.org/licenses/LICENSE-2.0
 
 ## BSD-2-Clause
 
-BSD 2-Clause License — https://opensource.org/license/bsd-2-clause  (⚠ verify for this component)
+BSD 2-Clause License — https://opensource.org/license/bsd-2-clause
 
 - `net.java.dev.msv:xsdlib:2022.7`
 
@@ -112,7 +114,7 @@ CDDL 1.1 / GPL 2.0 with Classpath Exception (dual; redistributed under CDDL-1.1)
 
 ## EDL-1.0 (BSD-3-Clause)
 
-Eclipse Distribution License 1.0 / BSD-3-Clause — https://www.eclipse.org/org/documents/edl-v10.php  (⚠ verify)
+Eclipse Distribution License 1.0 / BSD-3-Clause — https://www.eclipse.org/org/documents/edl-v10.php
 
 - `org.jvnet.staxex:stax-ex:1.8`
 
