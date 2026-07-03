@@ -2,6 +2,37 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.4.0] - 2026-07-03
+
+### Added
+- **Designer: the guided CDM workbench, rebuilt as a four-step flow** — pick a product and go from qualification to running code without leaving the panel:
+  - **Qualify** — the qualification route and every field-level configuration choice are derived live from the model in your project and presented as interactive choice gates; a qualified banner and recap confirm the result.
+  - **Model** — an interactive model view of the qualified product: the structure with your choices in place, per-node detail (sample data, conditions, validation predicates, provenance, attributes and functions), and the projected JSON alongside. Export the view as a crisp PNG or as Mermaid.
+  - **Execute** — run the built object through the model's own validation rules, inspect the outcome, and store instances as named objects; a searchable object explorer (with asset-class filters) lives in the left bar.
+  - **Code Export** — real builder-pattern Java (a clean skeleton to complete, or seeded with sample data), a runner, and per-product Windows/macOS run scripts; each product exports into its own package so multiple products coexist.
+- **Designer coverage across CDM major versions 5, 6 and 7** — the flow reads the model version your project uses (DRR projects participate through their embedded CDM); nothing is hardcoded to one release line. Each supported major is exercised against its full built-in sample product set.
+- **Designer identity** — compact brand header above the steps and a refreshed empty state.
+- **Code folding for `.rosetta` files** — types, functions, rules and other blocks fold in the editor.
+- **RuneBook: pinned Hierarchy and [+ Custom Java]** — the navigation tabs stay pinned while you work through a book.
+
+### Changed
+- **Designer visual polish** — theme-consistent scrollbars everywhere (including after switching the in-panel theme), a qualification loading animation, larger code peek, expandable sample-data entries for object arrays, and consistent step-tab styling.
+- **Model right bar** — sections start collapsed and remember your expansion per section; the legend reflects only what is actually on screen; JSON views gained line numbers and indent guides.
+- **Project cards** — type-tinted bands distinguish model families at a glance.
+- **Welcome view** — features grouped into categories.
+- **Training** — course entry gating now reflects the model version the course targets; lesson copy tightened.
+
+### Fixed
+- **Designer stability** — product selections and the qualified state no longer clear unexpectedly during background index refreshes; the Model view no longer flashes or re-renders in a loop; choice gates always respond to clicks; index reloads are atomic (a failed reload keeps the last good state instead of emptying the panel).
+- **Exported run scripts** — generated PowerShell scripts run reliably (correct quoting, honest exit codes, a `run.log` you can read when something fails); two exports never overwrite each other.
+- **Install paths with spaces** are handled correctly throughout the build pipeline.
+- **Index freshness** — vendored indices no longer report stale immediately after a fresh install; upgrading a project refreshes its indices coherently.
+
+## [8.3.2] - 2026-06-28
+
+### Fixed
+- **Rune DSL 10 support** — a change to support the Rune DSL 10 line; projects targeting Rune DSL 10 now build and generate their full source set correctly, including override rebuilds. Earlier versions could leave a Rune DSL 10 project with an incomplete generated-source set.
+
 ## [8.3.1] - 2026-06-27
 
 ### Fixed

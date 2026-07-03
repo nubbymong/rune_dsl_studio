@@ -77,14 +77,21 @@ RuneBooks are interactive notebooks for **prototyping and learning Rune DSL and 
 ![Status: Beta](https://img.shields.io/badge/Status-Beta-8957e5)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/nubbymong/rune_dsl_studio/main/marketplace/shot-designer.png" alt="The Designer — guided CDM trade qualification" width="88%">
+  <img src="https://raw.githubusercontent.com/nubbymong/rune_dsl_studio/main/marketplace/shot-designer.png" alt="The Designer — guided CDM product qualification and build" width="88%">
 </p>
 
-A guided accelerator for CDM onboarding. Choose any product and lifecycle event, make the field-level choices down the qualification tree, and Designer assembles the matching **builder / factory-pattern code** for you — dynamically, in a few clicks. This goes beyond the toolchain's ordinary Rune DSL code generation: Studio produces **real, usable builder-pattern code** — a clean skeleton to complete, or seeded with hardcoded sample data so you see a realistic product instance straight away. It then **projects that object in the Output tab and runs the validations** against it, so a conforming example comes together in front of you rather than being inferred from the model. **Add to Project** drops the result into your build — Java alone, or with run scripts — each product in its own package.
+A guided accelerator for CDM onboarding, delivered in 8.4 as a full four-step workbench. Pick a product, make the field-level choices the model itself asks for, and Designer qualifies it **live against your model's own qualification functions** — then builds the matching code, executes it, validates it, and exports it into your project:
 
-The effect is to compress the analysis-and-build phase of onboarding: Designer takes on roughly **95% of the initial effort** of standing up a CDM product/event — turning what is typically months of work into days. It won't populate every optional field — the last mile stays yours.
+- **Qualify** — choose a product and Designer surfaces the qualification route and every configuration choice it opens up. Honest by design: a product the model itself cannot qualify is flagged with the reason — never silently absent.
+- **Model** — the qualified product as an interactive model view: structure, the choices you made, and the projected JSON side by side, exportable as crisp PNG or Mermaid.
+- **Execute** — run the built object through the model's own validation rules, inspect the result, and store instances as named objects in the project's object store.
+- **Build & export** — real, usable **builder / factory-pattern Java** — a clean skeleton to complete, or seeded with sample data so a realistic instance appears straight away — plus a runner and per-product run scripts (Windows and macOS), each product in its own package. **Add to Project** drops the result into your build.
 
-> **Beta.** Designer is being tested across multiple DSL toolchain versions for compatibility (clean export currently centres on the bundled DRR 6.3 product set). **Coming soon:** DRR — select a regulatory regime and Designer will create the `ReportableEvent` and the report runners/builders for any CDM product/event combination, and generate rich documentation to support your design.
+Designer is **derived from the model you are working on, not hardcoded**: it works across **CDM major versions 5, 6 and 7** — and DRR projects through the CDM embedded in them — with the qualification flow, choices, and generated code all read from that version's own model. Each supported major is exercised against its complete built-in sample product set before release.
+
+The effect is to compress the analysis-and-build phase of onboarding: Designer takes on roughly **95% of the initial effort** of standing up a CDM product — turning what is typically months of work into days. It won't populate every optional field — the last mile stays yours.
+
+> **Current scope:** qualification builds the base-trade **ContractFormation** business event. **Coming next:** lifecycle events against a before-state, and DRR regime selection — creating the `ReportableEvent` and report runners/builders for any CDM product/event combination, with rich documentation to support your design.
 
 ## Training
 
@@ -162,4 +169,4 @@ Rune DSL Studio is an independent, community-built extension. It is not affiliat
 
 ---
 
-<p align="center"><sub>Built with the Rune DSL toolchain · © Nicholas Moger</sub></p>
+<p align="center"><sub>Rune DSL Studio © Nicholas Moger · Built with the open-source <a href="https://github.com/finos/rune-dsl">Rune DSL</a> toolchain (FINOS)</sub></p>
