@@ -2,6 +2,36 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.5.0] - 2026-07-08
+
+### Added
+- **Designer: Post-Trade Events** — the Designer now builds lifecycle events against a base trade, not only the base trade itself. Pick a built base object and the Designer detects which post-trade events apply to it, offers them in a dropdown (the same idiom as the product picker), and — for the event you select — shows what the event does and the evidence for why it applies before anything runs. Choosing an event walks it through the same five-step flow as a product.
+  - **Applicability** — the applicable-event list is derived from the base trade's own shape and the model's event pre-conditions; events the model evidences or that a convention seats are listed directly, and events that neither gate nor seat are gathered under a plain counted line rather than silently dropped.
+  - **Event qualification** — the selected event's qualification is shown as the model's own rule with the satisfying evidence lit, and the walk reports what the event changes.
+- **Designer: instances and lineage** — executed objects are stored as named instances, and two identical base trades are now kept distinct (auto-numbered labels) instead of collapsing into one. Open the lineage of any instance in a top-down viewer that lays out the chain of states and the events between them, with before/after quantities at each step and the driving instruction inspectable.
+- **Designer: a semantic choice layer over qualification** — as you make the choices the model asks for, the Designer now surfaces the meaning behind each one, not just the raw field:
+  - **Value choices** — a field whose value changes what the trade *is* (option direction Call / Put, cash vs physical settlement, the booking basis, exercise style) is presented as a labelled choice showing its real enumerated values, read from your model's own CDM enums — and where two enums share a name, the authoritative `cdm.*` one is preferred so the values are never ambiguous.
+  - **Alternative shapes** — where a choice reshapes the structure itself (a monetary-notional booking versus a share-count booking; the term-provision families; an averaging feature where the product supports one), the Designer presents the alternatives side by side and carries the one you pick into the object being built.
+  - **Written through in the model's own shape** — a resolved semantic choice is set directly into the object under construction using the field shapes the model expects (reference and value wrappers where the model requires them), and is checked against the model's own qualification before it is committed, and rolled back when the check cannot confirm it; the Model view and the executed pipeline then reflect exactly what was committed.
+  - Everything here is derived from the model in your project, per major version — nothing is hardcoded to one release.
+- **Designer: a five-step flow with an explicit qualification step** — the stepper is now **Setup → Qualify → Model → Execute → Export**. Setup gathers the structural choices the model requires; qualification no longer fires on the last click but waits for an explicit **Qualify this structure** action, so nothing runs until you ask. Once qualified, choices the chosen route rules out fold under a plain **Not applicable — based on your choices** line, each with the reason and a way to re-open it.
+  - The Post-Trade Events surface shares the same five-step flow, so the base-trade and event paths read identically.
+- **Corporate Compatibility Checker** — a new command, **Rune DSL: Run Corporate Compatibility Checker**, that diagnoses whether a locked-down corporate network can reach everything a build needs. It probes every backend endpoint over both paths the plugin uses — the editor's own requests and the Python build's requests — and reports DNS, TLS, proxy, and timeout results, checks the toolchain (Java, Maven, Git, Python), disk access, and Windows long-path handling. It only diagnoses: nothing is changed, and the local report it writes is never uploaded. It runs without an open project.
+- **Latest Updates** — a new command, **Rune DSL: Latest Updates**, backed by a content channel that pulls notices, tips, and What's-New entries live and shows exactly what was published — the page never fabricates content. Designer entries are marked **(beta)**.
+- **CDM 5, 6 and 7** — the post-trade, lineage and semantic work is derived per major version from the model in your project; each supported major is exercised against its built-in sample product set before release.
+
+### Changed
+- **Designer wording pass** — the panel's copy was tightened throughout: implementation terms no longer surface (qualification output reads as "the model output"); definitional subtitles fold into an info affordance instead of crowding each row; route and branch labels read as English rather than raw model paths.
+- **Java-analysis dependency cache** — for a model that embeds another (DRR embeds CDM), a rebuild now reuses the embedded model's Java-analysis indices instead of recomputing them, cutting rebuild time. The cache fails open: on any doubt — a partial dependency closure, a namespace it cannot fully account for, an empty or tampered entry — it recomputes rather than serve an incomplete result, and it is keyed to the toolchain version so a toolchain change never reuses old analysis.
+- **8.5 asset line** — the plugin now prefers 8.5 published assets and falls back to the previous line for anything not yet republished, across toolchain, indices, and tools.
+- **Project upgrade gate** — opening a project built by an earlier Studio now prompts a one-click upgrade sized to the version gap. Projects built by 8.3/8.4 download and install the 8.5 semantic index for their model version — no rebuild, no toolchain re-download; if no semantic index is published for that version yet, the upgrade records that and completes. Pre-8.3 projects keep the full rebuild path, which now also installs the semantic index. A failed download leaves the project untouched and the upgrade can be retried.
+
+### Fixed
+- **Designer configuration axes on CDM 7** — a configuration choice whose value is already fixed by the qualification route no longer appears as an open axis (it was over-offering combinations on CDM 7); the fixed value is seeded instead.
+- **Designer Qualify panel** — expanding **Show qualification logic** past the visible height now grows the card and scrolls its body, instead of letting the logic spill past the card's bottom edge.
+- **Designer choice-pill alignment** — semantic choice pills in an outstanding gate line up with the route cards beside them instead of hugging the panel edge.
+- **Designer wide layouts** — resolved-choice rows no longer strand their value and **Change** control at the far right on wide (1080p and above) displays; the choice surfaces are laid out on a real key/value grid and capped so nothing drifts apart.
+
 ## [8.4.0] - 2026-07-03
 
 ### Added

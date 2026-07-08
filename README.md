@@ -80,18 +80,20 @@ RuneBooks are interactive notebooks for **prototyping and learning Rune DSL and 
   <img src="https://raw.githubusercontent.com/nubbymong/rune_dsl_studio/main/marketplace/shot-designer.png" alt="The Designer — guided CDM product qualification and build" width="88%">
 </p>
 
-A guided accelerator for CDM onboarding, delivered in 8.4 as a full four-step workbench. Pick a product, make the field-level choices the model itself asks for, and Designer qualifies it **live against your model's own qualification functions** — then builds the matching code, executes it, validates it, and exports it into your project:
+A guided accelerator for CDM onboarding — a full five-step workbench (**Setup → Qualify → Model → Execute → Export**) that in 8.5 extends past the base trade to the whole trade lifecycle. Pick a product, make the field-level choices the model itself asks for, and Designer qualifies it **live against your model's own qualification functions** — then builds the matching code, executes it, validates it, and exports it into your project:
 
 - **Qualify** — choose a product and Designer surfaces the qualification route and every configuration choice it opens up. Honest by design: a product the model itself cannot qualify is flagged with the reason — never silently absent.
 - **Model** — the qualified product as an interactive model view: structure, the choices you made, and the projected JSON side by side, exportable as crisp PNG or Mermaid.
 - **Execute** — run the built object through the model's own validation rules, inspect the result, and store instances as named objects in the project's object store.
+- **Post-Trade Events** — pick a stored base trade and Designer detects which lifecycle events apply to it, shows the model's own rule with the satisfying evidence lit, and walks the event through the same five steps. Every executed object keeps its place in a **lineage** you can open as a top-down chain of states and the events between them.
+- **Semantic choices** — the meaning behind each qualification choice (option direction, settlement, booking basis, averaging) surfaces as labelled choices read from your model's own enums, written back in the model's own shape and checked against its qualification before commit.
 - **Build & export** — real, usable **builder / factory-pattern Java** — a clean skeleton to complete, or seeded with sample data so a realistic instance appears straight away — plus a runner and per-product run scripts (Windows and macOS), each product in its own package. **Add to Project** drops the result into your build.
 
 Designer is **derived from the model you are working on, not hardcoded**: it works across **CDM major versions 5, 6 and 7** — and DRR projects through the CDM embedded in them — with the qualification flow, choices, and generated code all read from that version's own model. Each supported major is exercised against its complete built-in sample product set before release.
 
 The effect is to compress the analysis-and-build phase of onboarding: Designer takes on roughly **95% of the initial effort** of standing up a CDM product — turning what is typically months of work into days. It won't populate every optional field — the last mile stays yours.
 
-> **Current scope:** qualification builds the base-trade **ContractFormation** business event. **Coming next:** lifecycle events against a before-state, and DRR regime selection — creating the `ReportableEvent` and report runners/builders for any CDM product/event combination, with rich documentation to support your design.
+> **Current scope:** the base-trade **ContractFormation** business event plus **post-trade lifecycle events** built against it, with instances and lineage. **Coming next:** DRR regime selection — creating the `ReportableEvent` and report runners/builders for any CDM product/event combination, with rich documentation to support your design.
 
 ## Training
 
