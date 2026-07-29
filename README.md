@@ -95,6 +95,33 @@ The effect is to compress the analysis-and-build phase of onboarding: Designer t
 
 > **Current scope:** the base-trade **ContractFormation** business event plus **post-trade lifecycle events** built against it, with instances and lineage. **Coming next:** DRR regime selection — creating the `ReportableEvent` and report runners/builders for any CDM product/event combination, with rich documentation to support your design.
 
+## DRR Data Lineage
+
+![Status: Beta](https://img.shields.io/badge/Status-Beta-8957e5)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nubbymong/rune_dsl_studio/main/marketplace/shot-lineage.png" alt="DRR Data Lineage — a field's full journey on one page" width="88%">
+</p>
+
+Ask any field of a DRR report where its value comes from — and read the answer on
+one page, straight from the compiled model. Open the **Regulatory** tab in a built
+DRR 7.x project and choose **DRR Data Lineage**. Pick a report (twelve reports across
+nine regimes: ASIC, CFTC, CSA, ESMA EMIR, FCA UK EMIR, HKMA, JFSA, MAS and SEC),
+pick a field — or search the full list — and the field's journey renders in four layers:
+
+- **Declaration** — the regulation's own definition of the field, tier by tier, provisions and citations verbatim;
+- **Extraction** — the model rule that computes the value, with the real code lit along its route;
+- **Projection & Submission** — where the value lands in the ISO message for each action type (new, modification, correction, …), down to the document path and the wire legs;
+- **Validation** — the checks that guard the field.
+
+What you read is what runs — every line comes from the same compiled model your
+build uses; nothing is hand-written. The lineage pack downloads once per DRR
+release on first open (~95 MB) and is cached locally. Packs are published per DRR
+release, starting with 7.4.0 — on other versions the page tells you which packs
+exist. Available in built DRR 7.x projects; access follows your DRR model access.
+DRR Data Lineage ships as a beta — feedback is welcome through the in-product
+feedback button.
+
 ## Training
 
 ![Available now](https://img.shields.io/badge/Available-now-79DEBD)

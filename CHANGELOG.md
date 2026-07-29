@@ -2,6 +2,72 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.6.0] - 2026-07-29
+
+### Added
+- **DRR Data Lineage (beta)** — ask any field of a DRR report where its value comes
+  from, and read the answer on one page. Pick a report (twelve reports across nine
+  regimes: ASIC, CFTC, CSA, ESMA EMIR, FCA UK EMIR, HKMA, JFSA, MAS and SEC), pick
+  a field — or search the full list — and the field's journey renders in four layers:
+  - **Declaration** — the regulation's own definition of the field, tier by tier,
+    provisions and citations verbatim;
+  - **Extraction** — the model rule that computes the value, with the real code lit
+    along its route;
+  - **Projection & Submission** — where the value lands in the ISO message for each
+    action type (new, modification, correction, …), down to the document path and
+    the wire legs;
+  - **Validation** — the checks that guard the field.
+
+  Everything on the page comes from the compiled model — nothing is hand-written.
+  The data pack downloads once per DRR release on first open (~95 MB) and is cached
+  locally. Packs are published per DRR release, starting with 7.4.0 — on other
+  versions the page tells you which packs exist. Available in built DRR 7.x
+  projects; access follows your DRR model access.
+- **DRR 8 upgrade-branch builds** — the DRR 8 `-upg.N` release family is now
+  first-class in the Build Manager: the upgrade branches appear alongside the GA
+  line, each with its own toolchain, and build end-to-end like any release.
+- **Updates on the front page** — an Updates reader on the navigator: What's New,
+  In the Works and Important Updates in one panel with unread badges, older
+  announcements a scroll away, and a ticker line that rotates through what's
+  active. Messages appear as they are published — no update needed to receive
+  them.
+
+### Changed
+- **Version discovery** — the plugin now finds the published data for your version
+  automatically, so future releases are picked up without a plugin update.
+- **The Designer says what's missing up front** — if a model version has no
+  published semantic data, the Designer tells you before you start, instead of
+  quietly offering a reduced surface.
+- **Builds trust this machine's certificates (Windows)** — on corporate
+  networks that inspect HTTPS, Java's bundled trust list rejects the re-signed
+  certificates and builds die with a PKIX error even though the machine itself
+  trusts them. Model builds now use the Windows certificate store — the same
+  trust your browser uses — so inspected connections validate with no IT
+  ticket. Setting `RUNE_BUILD_NO_OS_TRUST=1` reverts to Java's bundled list.
+- **The Corporate Compatibility Checker is one click away** — the Environment
+  panel now explains the checker and runs it directly. The checker also probes
+  the Maven repositories a model build uses — including Maven Central itself —
+  so a blocked host is named before a build fails, and when a network re-signs
+  certificates it names the inspection product in the report.
+- **A new permanent backend address** — 8.6 talks to
+  `rune-dsl-studio-proxy.nicholas-314.workers.dev`, the plugin's permanent home
+  from this release on. Corporate networks that allowlist by exact hostname
+  should add it (the checker probes it and will name it if blocked). Earlier
+  plugin versions keep using the old address, which continues to serve them.
+
+### Fixed
+- **Welcome screen rhythm** — the header spacing matches the Designer's; the
+  Regulatory card's beta pill anchors to its button; pressing the Designer button
+  no longer disturbs the welcome frame.
+- **Sidebar first paint after a build** — the left bar shows its loading state
+  immediately after a build instead of sitting blank for ~10 seconds.
+- **First open of a freshly built project** — the project's change-tracking
+  snapshot now runs in the background: the sidebar paints immediately instead of
+  sitting blank for minutes on machines with slow on-access disk scanning.
+- **Designer instance lineage** — the viewer pans by drag, exports a PNG, folds
+  its instruction strip, and its before/after diff now compares the trade's state
+  before and after the event.
+
 ## [8.5.0] - 2026-07-08
 
 ### Added
