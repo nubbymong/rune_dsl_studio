@@ -2,6 +2,54 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.6.1] - 2026-08-01
+
+### Added
+
+- **Designer market refinements in DRR projects** — the Designer's refinements
+  tier now resolves in DRR projects through the release's bundled CDM: DRR
+  embeds CDM, so the CDM refinements apply directly. Live today for drr 6.41.0,
+  7.5.0 and 8.0.0-dev.12, with earlier DRR releases being refreshed to match.
+  Delivered through the data channel, so refinements appear on a fresh
+  project's first build — no settings change needed.
+
+### Fixed
+
+- **The newest DRR releases build completely** — the DRR releases published
+  1 August on rune-dsl 9.85.1 (drr 6.41.0, 7.5.0 and 8.0.0-dev.12) renamed the
+  model's code-generation configuration; first builds of projects on those
+  releases completed with an incomplete generated-Java tree, and later
+  rebuilds could fail at the Maven step. The build now reads the
+  configuration name the model itself declares and carries the model's own
+  build dependencies, so releases on either side of the rename build
+  end to end. A project created on an affected release before this fix is
+  repaired by running one full Build after updating.
+- **Corporate networks: certificate trust in every build step** — the one
+  remaining Maven invocation that ignored the operating system's certificate
+  store now honours it like the rest of the pipeline, completing the
+  corporate-network compatibility work from 8.6.0 for environments with
+  TLS-inspecting proxies.
+- **Designer execution on newer model versions** — the Execute step's Java
+  pipeline now runs on models pinned to DSL 10.x: CDM 7 (including the GA line),
+  the early CDM 8 development versions, and the DRR 8 upgrade branches. `as`-cast
+  predicates qualify correctly — including casts that skip intermediate choice
+  levels — both validation-API generations are understood, and upgrade-branch
+  builds that stage two generations of a renamed runtime library no longer
+  collide. Every product family on these models now builds, qualifies and
+  validates end to end; the one exception is `TotalReturnSwap_Index`, which
+  cannot qualify on any CDM 7/8 version due to a defect in the model's own
+  `Qualify_AssetClass_Credit` function (reported upstream).
+- **Faster first build of a fresh project** — the project's git baseline is
+  written as one fast-import stream (a handful of files instead of hundreds),
+  removing the long final-step wait on machines where antivirus taxes many
+  small writes.
+- **1080p and split-editor layouts** — the Designer's Execute results fill the
+  available space instead of a fixed strip; dropdown lists and context menus
+  stay inside their panel on short windows; long pills wrap instead of pushing
+  rows wide; the sidebar's version capability pills now shorten correctly in a
+  narrow sidebar; the exceptions table fits a half-width panel; the welcome
+  page scales its title and padding to the window.
+
 ## [8.6.0] - 2026-07-29
 
 ### Added
