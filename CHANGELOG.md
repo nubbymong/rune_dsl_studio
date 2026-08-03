@@ -2,10 +2,51 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.6.2] - 2026-08-03
+
+### Fixed
+- **Overriding an ISO description file no longer breaks the rebuild** — on the
+  DRR releases published on rune-dsl 9.85.1 (drr 6.41.0, 7.5.0 and
+  8.0.0-dev.12), overriding one of the model's ISO 20022 description files
+  made the next Override Rebuild fail at the Maven step. The build now detects
+  this case and runs the affected rebuild as a clean full pass — every other
+  rebuild keeps the fast incremental path.
+- **Existing DRR projects receive Designer market refinements** — 8.6.1
+  introduced refinements for DRR projects through the release's bundled CDM,
+  but only projects created after that change picked them up. Any Override
+  Rebuild or Upgrade now tops up the project's published data in place, so
+  existing projects gain the refinements — and any future additions — without
+  being recreated. The check is a single small request when nothing has
+  changed.
+- **Negative number bounds parse correctly in the bundled analysis parser** —
+  expressions like `value > -1 and value < 1` (the CDM correlation bound and
+  the EMIR delta validation) were read with the wrong grouping by the
+  extension's bundled analysis parser. The published model data and toolchains
+  were corrected server-side on 2 August; this release carries the same fix in
+  the extension's built-in fallback so every path agrees. Real model builds
+  and validation were never affected — they run on the official toolchain.
+- **An interrupted rebuild no longer swallows your edit** — source changes
+  were recorded as processed at the start of a rebuild, so a rebuild that
+  failed part-way (or a closed window) left the next rebuild reporting
+  "0 source changes" and skipping the real work. Changes are now recorded
+  only when the build completes end-to-end; an interrupted build simply
+  re-detects the same edit and rebuilds it next time.
+- **Modified files stay editable until they're built** — a file opened for
+  modification now opens ready to edit from every surface (namespace tree,
+  modifications panel), including after a VS Code restart, until a completed
+  build carries the change — at which point it locks again as a source file.
+  Right-click Edit starts the next modification as before, and Lock now acts
+  on the file you clicked rather than whichever editor happened to be
+  focused.
+- **Rebuild indexing waits for a ready engine or skips it** — the background
+  indexing engine is only used once it has confirmed it is warmed up (a
+  session's second rebuild indexes in seconds); until then rebuilds go
+  straight to the bounded one-shot indexer instead of waiting on a cold
+  engine, with progress reported throughout.
+
 ## [8.6.1] - 2026-08-01
 
 ### Added
-
 - **Designer market refinements in DRR projects** — the Designer's refinements
   tier now resolves in DRR projects through the release's bundled CDM: DRR
   embeds CDM, so the CDM refinements apply directly. Live today for drr 6.41.0,
@@ -14,7 +55,6 @@ All notable changes to the Rune DSL VS Code Extension.
   project's first build — no settings change needed.
 
 ### Fixed
-
 - **The newest DRR releases build completely** — the DRR releases published
   1 August on rune-dsl 9.85.1 (drr 6.41.0, 7.5.0 and 8.0.0-dev.12) renamed the
   model's code-generation configuration; first builds of projects on those
@@ -50,6 +90,7 @@ All notable changes to the Rune DSL VS Code Extension.
   narrow sidebar; the exceptions table fits a half-width panel; the welcome
   page scales its title and padding to the window.
 
+<!-- DRAFT for owner review before release — date + any scope trims are the owner's call -->
 ## [8.6.0] - 2026-07-29
 
 ### Added
