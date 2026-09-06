@@ -2,6 +2,27 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.6.3] - 2026-09-06
+
+### Fixed
+- **First builds on the newest CDM releases use the full generated sources** — on
+  CDM releases from 6.25.0 onwards (6.25.0, 6.27.0, 7.1.0, 7.2.0, 8.0.0-dev.3 and
+  8.0.0-dev.4) the model states its code-generation plugin version as a reference
+  to another of its own settings. The wrapper build followed that reference one
+  step and stopped, so Maven was handed the reference instead of the version and
+  the first build fell back to the partial generated-source copy, with a warning
+  in the build log. The wrapper now resolves such references all the way to the
+  stated version and refuses an unresolvable one out loud. Earlier CDM releases
+  and every DRR release are unaffected: their wrapper output is byte-identical to
+  8.6.2.
+- **The graph viewer lists an enum's inherited members** — a Rune enum can extend
+  another (`AssetIdTypeEnum` extends `ProductIdTypeEnum`), and the viewer fanned
+  out, listed and counted only the extending enum's own members, so
+  `AssetIdTypeEnum` showed 3 values where the model gives it 18. The viewer now
+  reads the inherited members the published index already carries and lists them
+  after the enum's own, naming the ancestor each comes from. Nothing else changed
+  in this release.
+
 ## [8.6.2] - 2026-08-03
 
 ### Fixed
