@@ -2,6 +2,24 @@
 
 All notable changes to the Rune DSL VS Code Extension.
 
+## [8.6.4] - 2026-10-15
+
+### Fixed
+- **Projects on drr 8.0.0-upg.5 get the full generated Java and rebuild again** —
+  drr 8.0.0-upg.5 is published on rune-dsl 10.14.0, but the libraries it brings
+  carry the code-generation plugin of rune-dsl 10.13.1. The wrapper build saw
+  that mismatch and stopped, so the first build kept only the partial
+  generated-source copy, with a warning in the build log, and a later Override
+  Rebuild could fail at the "Generate wrapper Maven project" step. When no
+  plugin the libraries bring matches rune-runtime, the wrapper now uses the
+  plugin version the model itself declares (10.14.0), provided rune-runtime
+  and the provisioned toolchain are at that version too. The first build then
+  emits the full generated Java source, and Override Rebuilds pass that step.
+  A project already built on 8.6.0 to 8.6.3 is repaired by updating and
+  running one Master Build from the Rune sidebar (pick the model and version).
+  Any other case is still refused with an error, and every other release
+  takes the same path as before. Nothing else changed in this release.
+
 ## [8.6.3] - 2026-09-06
 
 ### Fixed
